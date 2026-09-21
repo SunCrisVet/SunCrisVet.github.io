@@ -15,6 +15,7 @@
   --radius-lg: 34px;
   --radius-md: 22px;
   --content: 1220px;
+  --font-display: "Aptos Display", "Segoe UI Variable Display", "Segoe UI", Inter, ui-sans-serif, sans-serif;
 }
 
 * {
@@ -46,6 +47,12 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
 }
 
 a:focus-visible,
@@ -131,7 +138,7 @@ button:focus-visible {
 }
 
 .brand img {
-  width: clamp(190px, 20vw, 265px);
+  width: clamp(245px, 24vw, 330px);
   height: auto;
 }
 
@@ -275,10 +282,10 @@ h1 {
   max-width: 760px;
   margin: 0;
   color: var(--navy-950);
-  font-size: clamp(3.4rem, 6.4vw, 6.1rem);
-  font-weight: 800;
-  letter-spacing: -0.065em;
-  line-height: 0.97;
+  font-size: clamp(3.15rem, 5.4vw, 5.2rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .hero-lead {
@@ -451,10 +458,10 @@ h1 {
 .section h2 {
   margin: 0;
   color: var(--navy-950);
-  font-size: clamp(2.5rem, 5vw, 4.7rem);
-  font-weight: 800;
-  letter-spacing: -0.055em;
-  line-height: 1.02;
+  font-size: clamp(2.35rem, 4.5vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
 }
 
 .section-heading {
@@ -629,9 +636,10 @@ h1 {
 
 .specialty-feature h3 {
   margin: 0 0 0.6rem;
-  font-size: clamp(1.8rem, 3.6vw, 3.1rem);
-  letter-spacing: -0.04em;
-  line-height: 1.05;
+  font-size: clamp(1.75rem, 3vw, 2.7rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
 }
 
 .specialty-feature p:not(.eyebrow) {
@@ -1482,7 +1490,7 @@ h1 {
   }
 
   .brand img {
-    width: 185px;
+    width: 225px;
   }
 
   .header-meta .button {
@@ -1550,7 +1558,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(3rem, 14vw, 4.4rem);
+    font-size: clamp(2.8rem, 12vw, 3.8rem);
   }
 
   .hero-lead {
