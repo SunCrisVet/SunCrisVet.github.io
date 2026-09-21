@@ -3,10 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex, follow">
   <title>Pagina nu a fost găsită | Sun Cris Vet</title>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="stylesheet" href="/assets/site.css">
+  <script>
+    (function () {
+      const redirects = {
+        "/cabinet-veterinar-drumul-taberei": "/",
+        "/cabinet-veterinar-drumul-taberei/consultatii-veterinare-tratamente": "/servicii/consultatii-tratamente/",
+        "/cabinet-veterinar-drumul-taberei/dermatologie-veterinara": "/servicii/dermatologie/",
+        "/cabinet-veterinar-drumul-taberei/medicina-de-urgenta": "/#urgente",
+        "/cabinet-veterinar-drumul-taberei/medicina-interna": "/servicii/medicina-interna/",
+        "/cabinet-veterinar-drumul-taberei/obstetrica-si-ginecologie": "/servicii/obstetrica-ginecologie/",
+        "/cabinet-veterinar-drumul-taberei/stomatologie-si-chirurgie-orala": "/servicii/chirurgie-stomatologie/",
+        "/contact": "/#contact",
+        "/diagnostic-de-laborator": "/servicii/analize-laborator/",
+        "/ecografie-veterinara-mobila": "/servicii/ecografie/",
+        "/ambulanta-veterinara-bucuresti": "/#urgente",
+        "/ambulanta-veterinara-bucuresti/tratamente-ambulatorii": "/servicii/consultatii-tratamente/",
+        "/ambulanta-veterinara-bucuresti/urgente-veterinare": "/#urgente",
+        "/ambulanta-veterinara-bucuresti/vaccinari-si-deparazitari": "/servicii/vaccinari-deparazitari/",
+        "/blog": "/",
+        "/blog/91-cele-mai-sanatoase-rase-de-caini": "/",
+        "/blog/92-intoxicatia-cu-struguri-si-stafide-la-caini": "/#urgente",
+        "/blog/93-alimente-periculoase-pentru-caini": "/#urgente"
+      };
+
+      let oldPath = window.location.pathname.replace(/\/+$/, "") || "/";
+      if (oldPath === "/index.php") {
+        window.location.replace("/");
+        return;
+      }
+      if (oldPath.startsWith("/index.php/")) {
+        oldPath = oldPath.slice("/index.php".length);
+      }
+
+      const destination = redirects[oldPath];
+      if (destination) {
+        window.location.replace(destination);
+      }
+    }());
+  </script>
 </head>
 <body>
   <main class="not-found">
