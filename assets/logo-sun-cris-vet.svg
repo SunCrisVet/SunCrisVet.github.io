@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Sun Cris Vet</title>
+  <desc id="desc">Logo provizoriu Sun Cris Vet, cu reper de localizare și puls veterinar.</desc>
+  <style>
+    .wordmark { font-family: "Segoe UI", Arial, sans-serif; font-weight: 750; letter-spacing: -2px; }
+    .descriptor { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; letter-spacing: 3px; }
+  </style>
+
+  <g transform="translate(34 28)">
+    <path d="M122 3 C57 3 16 49 16 109 C16 180 97 228 122 244 C147 228 228 180 228 109 C228 49 187 3 122 3Z" fill="#0B3553"/>
+    <circle cx="122" cy="106" r="61" fill="#FFFFFF"/>
+    <circle cx="122" cy="106" r="57" fill="none" stroke="#D9F5F0" stroke-width="6"/>
+    <path d="M72 111 H96 L108 79 L128 145 L143 107 H174" fill="none" stroke="#12A996" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="318" y="132" class="wordmark" font-size="86" fill="#0B3553">SUN CRIS <tspan fill="#12A996">VET</tspan></text>
+  <text x="323" y="191" class="descriptor" font-size="25" fill="#557185">CABINET VETERINAR · DRUMUL GHINDARILOR</text>
+  <text x="323" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#7A8F9E">București · veterinar-nonstop.ro</text>
+</svg>
