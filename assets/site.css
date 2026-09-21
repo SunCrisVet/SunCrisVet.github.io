@@ -609,6 +609,10 @@ h1 {
   color: #d6f5ef;
 }
 
+.service-card-featured .service-card-link {
+  color: var(--white);
+}
+
 .specialty-feature {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
