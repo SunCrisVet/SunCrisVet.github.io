@@ -1266,6 +1266,12 @@ h1 {
   font-size: 0.83rem;
 }
 
+.reviews-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 .contact {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.62fr);
