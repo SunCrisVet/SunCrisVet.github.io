@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="280" viewBox="0 0 1050 280" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="280" viewBox="0 0 980 280" role="img" aria-labelledby="title desc">
   <title id="title">Sun Cris Vet</title>
   <desc id="desc">Logo provizoriu Sun Cris Vet, cu reper de localizare și puls veterinar.</desc>
   <style>
     .wordmark { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; letter-spacing: -2px; }
-    .descriptor { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; letter-spacing: 3px; }
+    .descriptor { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; letter-spacing: 1px; }
   </style>
 
   <g transform="translate(34 28)">
@@ -14,6 +14,5 @@
   </g>
 
   <text x="318" y="132" class="wordmark" font-size="86" fill="#0B3553">SUN CRIS <tspan fill="#12A996">VET</tspan></text>
-  <text x="323" y="191" class="descriptor" font-size="25" fill="#557185">CABINET VETERINAR · DRUMUL GHINDARI</text>
-  <text x="323" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#7A8F9E">București · veterinar-nonstop.ro</text>
+  <text x="318" y="205" class="descriptor" font-size="48" textLength="630" lengthAdjust="spacingAndGlyphs" fill="#557185">CABINET VETERINAR · DRUMUL GHINDARI 65</text>
 </svg>
