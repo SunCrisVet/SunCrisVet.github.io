@@ -1,0 +1,84 @@
+# Redirectionari permanente pentru migrarea veterinar-nonstop.ro
+# Variantele cu si fara bara finala evita redirecturile in lant.
+
+/cabinet-veterinar-drumul-taberei / 301
+/cabinet-veterinar-drumul-taberei/ / 301
+/cabinet-veterinar-drumul-taberei/consultatii-veterinare-tratamente /servicii/consultatii-tratamente/ 301
+/cabinet-veterinar-drumul-taberei/consultatii-veterinare-tratamente/ /servicii/consultatii-tratamente/ 301
+/cabinet-veterinar-drumul-taberei/dermatologie-veterinara /servicii/dermatologie/ 301
+/cabinet-veterinar-drumul-taberei/dermatologie-veterinara/ /servicii/dermatologie/ 301
+/cabinet-veterinar-drumul-taberei/medicina-de-urgenta /#urgente 301
+/cabinet-veterinar-drumul-taberei/medicina-de-urgenta/ /#urgente 301
+/cabinet-veterinar-drumul-taberei/medicina-interna /servicii/medicina-interna/ 301
+/cabinet-veterinar-drumul-taberei/medicina-interna/ /servicii/medicina-interna/ 301
+/cabinet-veterinar-drumul-taberei/obstetrica-si-ginecologie /servicii/obstetrica-ginecologie/ 301
+/cabinet-veterinar-drumul-taberei/obstetrica-si-ginecologie/ /servicii/obstetrica-ginecologie/ 301
+/cabinet-veterinar-drumul-taberei/stomatologie-si-chirurgie-orala /servicii/chirurgie-stomatologie/ 301
+/cabinet-veterinar-drumul-taberei/stomatologie-si-chirurgie-orala/ /servicii/chirurgie-stomatologie/ 301
+
+/ambulanta-veterinara-bucuresti /#urgente 301
+/ambulanta-veterinara-bucuresti/ /#urgente 301
+/ambulanta-veterinara-bucuresti/tratamente-ambulatorii /servicii/consultatii-tratamente/ 301
+/ambulanta-veterinara-bucuresti/tratamente-ambulatorii/ /servicii/consultatii-tratamente/ 301
+/ambulanta-veterinara-bucuresti/urgente-veterinare /#urgente 301
+/ambulanta-veterinara-bucuresti/urgente-veterinare/ /#urgente 301
+/ambulanta-veterinara-bucuresti/vaccinari-si-deparazitari /servicii/vaccinari-deparazitari/ 301
+/ambulanta-veterinara-bucuresti/vaccinari-si-deparazitari/ /servicii/vaccinari-deparazitari/ 301
+
+/diagnostic-de-laborator /servicii/analize-laborator/ 301
+/diagnostic-de-laborator/ /servicii/analize-laborator/ 301
+/ecografie-veterinara-mobila /servicii/ecografie/ 301
+/ecografie-veterinara-mobila/ /servicii/ecografie/ 301
+/contact /#contact 301
+/contact/ /#contact 301
+
+/blog / 301
+/blog/ / 301
+/blog/91-cele-mai-sanatoase-rase-de-caini / 301
+/blog/91-cele-mai-sanatoase-rase-de-caini/ / 301
+/blog/92-intoxicatia-cu-struguri-si-stafide-la-caini /#urgente 301
+/blog/92-intoxicatia-cu-struguri-si-stafide-la-caini/ /#urgente 301
+/blog/93-alimente-periculoase-pentru-caini /#urgente 301
+/blog/93-alimente-periculoase-pentru-caini/ /#urgente 301
+
+/index.php / 301
+/index.php/ / 301
+/index.php/cabinet-veterinar-drumul-taberei / 301
+/index.php/cabinet-veterinar-drumul-taberei/ / 301
+/index.php/cabinet-veterinar-drumul-taberei/consultatii-veterinare-tratamente /servicii/consultatii-tratamente/ 301
+/index.php/cabinet-veterinar-drumul-taberei/consultatii-veterinare-tratamente/ /servicii/consultatii-tratamente/ 301
+/index.php/cabinet-veterinar-drumul-taberei/dermatologie-veterinara /servicii/dermatologie/ 301
+/index.php/cabinet-veterinar-drumul-taberei/dermatologie-veterinara/ /servicii/dermatologie/ 301
+/index.php/cabinet-veterinar-drumul-taberei/medicina-de-urgenta /#urgente 301
+/index.php/cabinet-veterinar-drumul-taberei/medicina-de-urgenta/ /#urgente 301
+/index.php/cabinet-veterinar-drumul-taberei/medicina-interna /servicii/medicina-interna/ 301
+/index.php/cabinet-veterinar-drumul-taberei/medicina-interna/ /servicii/medicina-interna/ 301
+/index.php/cabinet-veterinar-drumul-taberei/obstetrica-si-ginecologie /servicii/obstetrica-ginecologie/ 301
+/index.php/cabinet-veterinar-drumul-taberei/obstetrica-si-ginecologie/ /servicii/obstetrica-ginecologie/ 301
+/index.php/cabinet-veterinar-drumul-taberei/stomatologie-si-chirurgie-orala /servicii/chirurgie-stomatologie/ 301
+/index.php/cabinet-veterinar-drumul-taberei/stomatologie-si-chirurgie-orala/ /servicii/chirurgie-stomatologie/ 301
+
+/index.php/ambulanta-veterinara-bucuresti /#urgente 301
+/index.php/ambulanta-veterinara-bucuresti/ /#urgente 301
+/index.php/ambulanta-veterinara-bucuresti/tratamente-ambulatorii /servicii/consultatii-tratamente/ 301
+/index.php/ambulanta-veterinara-bucuresti/tratamente-ambulatorii/ /servicii/consultatii-tratamente/ 301
+/index.php/ambulanta-veterinara-bucuresti/urgente-veterinare /#urgente 301
+/index.php/ambulanta-veterinara-bucuresti/urgente-veterinare/ /#urgente 301
+/index.php/ambulanta-veterinara-bucuresti/vaccinari-si-deparazitari /servicii/vaccinari-deparazitari/ 301
+/index.php/ambulanta-veterinara-bucuresti/vaccinari-si-deparazitari/ /servicii/vaccinari-deparazitari/ 301
+
+/index.php/diagnostic-de-laborator /servicii/analize-laborator/ 301
+/index.php/diagnostic-de-laborator/ /servicii/analize-laborator/ 301
+/index.php/ecografie-veterinara-mobila /servicii/ecografie/ 301
+/index.php/ecografie-veterinara-mobila/ /servicii/ecografie/ 301
+/index.php/contact /#contact 301
+/index.php/contact/ /#contact 301
+
+/index.php/blog / 301
+/index.php/blog/ / 301
+/index.php/blog/91-cele-mai-sanatoase-rase-de-caini / 301
+/index.php/blog/91-cele-mai-sanatoase-rase-de-caini/ / 301
+/index.php/blog/92-intoxicatia-cu-struguri-si-stafide-la-caini /#urgente 301
+/index.php/blog/92-intoxicatia-cu-struguri-si-stafide-la-caini/ /#urgente 301
+/index.php/blog/93-alimente-periculoase-pentru-caini /#urgente 301
+/index.php/blog/93-alimente-periculoase-pentru-caini/ /#urgente 301
