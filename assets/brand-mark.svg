@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="280" viewBox="0 0 250 280" role="img" aria-labelledby="title desc">
+  <title id="title">Sun Cris Vet</title>
+  <desc id="desc">Simbol Sun Cris Vet cu reper de localizare și puls veterinar.</desc>
+  <path d="M122 31 C57 31 16 77 16 137 C16 208 97 256 122 272 C147 256 228 208 228 137 C228 77 187 31 122 31Z" fill="#0B3553"/>
+  <circle cx="122" cy="134" r="61" fill="#FFFFFF"/>
+  <circle cx="122" cy="134" r="57" fill="none" stroke="#D9F5F0" stroke-width="6"/>
+  <path d="M72 139 H96 L108 107 L128 173 L143 135 H174" fill="none" stroke="#12A996" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
