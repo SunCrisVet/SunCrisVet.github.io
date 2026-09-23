@@ -2,6 +2,70 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
 
+const analyticsEvents = window.sunCrisVetAnalyticsEvents || [];
+window.sunCrisVetAnalyticsEvents = analyticsEvents;
+
+const trackConversion = (eventName, parameters = {}) => {
+  const payload = {
+    event: eventName,
+    page_path: window.location.pathname,
+    ...parameters,
+  };
+
+  analyticsEvents.push(payload);
+
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, parameters);
+  } else {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+  }
+};
+
+const getLinkLocation = (link) => {
+  if (link.closest(".mobile-actions")) return "mobile_actions";
+  if (link.closest(".site-header")) return "header";
+  if (link.closest(".hero")) return "hero";
+  if (link.closest("#recenzii")) return "reviews";
+  if (link.closest("#contact")) return "contact";
+  if (link.closest(".site-footer")) return "footer";
+  return "content";
+};
+
+document.addEventListener("click", (event) => {
+  if (!(event.target instanceof Element)) return;
+
+  const link = event.target.closest("a");
+  if (!link) return;
+
+  const href = link.getAttribute("href") || "";
+  const linkLocation = getLinkLocation(link);
+
+  if (href.startsWith("tel:")) {
+    trackConversion("phone_click", { link_location: linkLocation });
+    return;
+  }
+
+  if (link.closest("#recenzii") && href.includes("share.google/")) {
+    trackConversion("google_profile_click", { link_location: linkLocation });
+    return;
+  }
+
+  if (href.includes("share.google/") || href.includes("google.com/maps")) {
+    trackConversion("map_click", { link_location: linkLocation });
+    return;
+  }
+
+  const destination = new URL(href, window.location.href);
+  const serviceMatch = destination.pathname.match(/^\/servicii\/([^/]+)\/?/);
+  if (serviceMatch) {
+    trackConversion("service_click", {
+      link_location: linkLocation,
+      service: serviceMatch[1],
+    });
+  }
+});
+
 const navToggle = document.querySelector(".nav-toggle");
 const mainNav = document.querySelector("#main-nav");
 
@@ -76,6 +140,7 @@ if (callbackForm && callbackStatus) {
       if (window.turnstile) {
         window.turnstile.reset();
       }
+      trackConversion("appointment_request_success", { form_name: "callback_request" });
       callbackStatus.dataset.state = "success";
       callbackStatus.textContent = "Cererea a fost trimisă. Te vom contacta în timpul programului.";
     } catch (error) {
