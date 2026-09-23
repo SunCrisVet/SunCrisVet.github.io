@@ -6,23 +6,37 @@ const navToggle = document.querySelector(".nav-toggle");
 const mainNav = document.querySelector("#main-nav");
 
 if (navToggle && mainNav) {
+  const navToggleLabel = navToggle.querySelector(".sr-only");
+
+  const setMenuState = (isOpen) => {
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    mainNav.dataset.open = String(isOpen);
+    if (navToggleLabel) {
+      navToggleLabel.textContent = isOpen ? "Închide meniul" : "Deschide meniul";
+    }
+  };
+
   navToggle.addEventListener("click", () => {
     const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-    mainNav.dataset.open = String(!isOpen);
+    setMenuState(!isOpen);
   });
 
   mainNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      navToggle.setAttribute("aria-expanded", "false");
-      mainNav.dataset.open = "false";
+      setMenuState(false);
     });
   });
 
+  document.addEventListener("click", (event) => {
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+    if (isOpen && !navToggle.contains(event.target) && !mainNav.contains(event.target)) {
+      setMenuState(false);
+    }
+  });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      navToggle.setAttribute("aria-expanded", "false");
-      mainNav.dataset.open = "false";
+    if (event.key === "Escape" && navToggle.getAttribute("aria-expanded") === "true") {
+      setMenuState(false);
       navToggle.focus();
     }
   });
