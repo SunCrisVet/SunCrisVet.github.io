@@ -1,2 +1,9 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-oEFuhOnZSkY9ddbStyEmX1cvkR2ZFdGjSADPrnDoc58=' 'sha256-m8bUGLOw6DMCEGnsq/I2LSfjVEVTesMrZP5RxgbImq0=' 'sha256-bQcyzQEOhaqRTWnPOGPW0AVX6gnKKLzeIdUgtnxOvK8=' 'sha256-7f9oTThNSsZg+/CkNaiqHCbhF+7K9rCh1P+6RrLu7fg=' 'sha256-2G7ydRU40Z+O1K3aJl1RO6ptAKOjSQyfznSXqWNk7n4=' 'sha256-bgh6NxHUNBkMr0JIE34UUuZsqgu0QUXaZs84L6tA7Oo=' 'sha256-tCDqoZVcafxDRoAYtFy/miT/+WM5mOV46YtVC/2wrEk=' 'sha256-m9g+AMCIicyDr41QfFF4tuqQ+SPJLTcw/7ifyrY86Ek=' 'sha256-FmV93wzYNOwuQce9Fbkn6rpEMOLlJq+nfKXo0occ/vg=' 'sha256-MPer3gtH8ZcL5yph9/Jp8lDON8fIgd9nFjcf0EhH94E=' 'sha256-7HiqGL8e6IjrVvn3rIwa2Uny3MY/nebgvA8TrCHageU=' 'sha256-6d3khXQAh+YJezr9GjRR09cUxl9ceW1VDvFqWAkrrWk=' 'sha256-/+LUdfPvQD8PkpdBpuF9QZ61jXrCqLdlvlibVWVGCRc=' 'sha256-YhDed5G7kxCuMu6TeOdj9a02XS6nb+XiC553B+uX0go=' 'sha256-7vnCtLGyKu1HcVYQjiSNrJvCUVhWrdXEG03IZWDi2Kk=' 'sha256-N27c/i1XFHDr5bwBfnrNKyU9uvLGl1a0h5HuuKu1Hvg=' 'sha256-C1/O71B122PHdLle7PkJlKbGHD9aI0PRLcVYiTds9y4=' 'sha256-+ksJMvGSzny9GCTxWTB7Na5RR0Lu4YEPCC496oS8ZJw=' 'sha256-x//SIToRoWfGYyWxAn6dwB2EbLLWlD4dPRTg6KNO1vM=' 'sha256-mcffbQluW8uS7JTBoK8OILPxPr+gnjcKmrVUDterY4M=' 'sha256-5rnHYYF+5TtK50Y2PWwq1pZgnn2AvJNIBnZxSNNHc8k=' 'sha256-Qa/ZRQXqtruTBXU0XxwIgDeAnYOt5Gu7cObPJGQxT0g=' 'sha256-IM5OZPF/vS+nhJ0Iw+oOo+ZJEuuq9+p0qCD7JCB7V7k=' https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com https://www.google.com; frame-src https://challenges.cloudflare.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

@@ -518,8 +518,29 @@ h1 {
 
 .copyright {
   grid-column: 1 / -1;
+  padding-top: 0;
+}
+
+.footer-legal {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--line);
+}
+
+.site-footer .footer-legal {
+  font-size: 0.82rem;
+}
+
+.footer-legal a {
+  color: var(--navy-900);
+  font-weight: 750;
+}
+
+.footer-legal a:hover {
+  color: var(--teal-700);
 }
 
 .section {
@@ -1645,6 +1666,50 @@ h1 {
   width: 100%;
   height: 230px;
   border: 0;
+}
+
+.contact-map iframe[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.map-consent {
+  display: grid;
+  min-height: 222px;
+  place-items: center;
+  align-content: center;
+  gap: 0.65rem;
+  padding: 1.5rem;
+  color: var(--navy-900);
+  text-align: center;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(15, 158, 142, 0.16), transparent 34%),
+    var(--white);
+}
+
+.map-consent .icon {
+  width: 30px;
+  height: 30px;
+  color: var(--teal-700);
+}
+
+.map-consent strong {
+  font-size: 1.05rem;
+}
+
+.map-consent p {
+  max-width: 420px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.map-consent .button {
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border: 0;
+  cursor: pointer;
 }
 
 .mobile-actions {

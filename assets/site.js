@@ -106,6 +106,23 @@ if (navToggle && mainNav) {
   });
 }
 
+const mapContainer = document.querySelector("[data-map-container]");
+const mapButton = document.querySelector("[data-load-map]");
+const mapConsent = document.querySelector("[data-map-consent]");
+const mapFrame = mapContainer?.querySelector("iframe[data-src]");
+
+if (mapButton && mapConsent && mapFrame) {
+  mapButton.addEventListener("click", () => {
+    mapFrame.src = mapFrame.dataset.src;
+    mapFrame.hidden = false;
+    mapConsent.hidden = true;
+    trackConversion("map_click", {
+      link_location: "embedded_map",
+      action: "load",
+    });
+  }, { once: true });
+}
+
 const callbackForm = document.querySelector("#callback-form");
 const callbackStatus = document.querySelector("#callback-status");
 

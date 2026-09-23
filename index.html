@@ -26,7 +26,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/assets/site.css?v=5">
+  <link rel="stylesheet" href="/assets/site.css?v=6">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -374,7 +374,7 @@
 
         <label class="privacy-check">
           <input type="checkbox" name="privacy" value="accepted" required>
-          <span>Am citit <a href="/confidentialitate/" target="_blank" rel="noopener">informarea privind cererea de programare</a>.</span>
+          <span>Am citit <a href="/confidentialitate/" target="_blank" rel="noopener">politica de confidențialitate</a>.</span>
         </label>
 
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAFA7lr5JAVQtm6Za" data-action="appointment_request" data-theme="light"></div>
@@ -404,12 +404,19 @@
           <div><dt>Sâmbătă</dt><dd>09:00–13:00</dd></div>
           <div><dt>Duminică</dt><dd>Închis</dd></div>
         </dl>
-        <div class="contact-map">
+        <div class="contact-map" data-map-container>
+          <div class="map-consent" data-map-consent>
+            <svg class="icon icon-map" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <strong>Hartă Google</strong>
+            <p>Harta se încarcă numai la cerere. La încărcare, browserul se va conecta la Google Maps.</p>
+            <button class="button button-secondary" type="button" data-load-map>Încarcă harta Google</button>
+          </div>
           <iframe
             title="Hartă Google Maps – Sun Cris Vet, Drumul Ghindari 65"
-            src="https://www.google.com/maps?q=Drumul%20Ghindari%2065%2C%20Bucure%C8%99ti&amp;output=embed"
+            data-src="https://www.google.com/maps?q=Drumul%20Ghindari%2065%2C%20Bucure%C8%99ti&amp;output=embed"
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerpolicy="strict-origin-when-cross-origin"
+            hidden
             allowfullscreen></iframe>
         </div>
       </div>
@@ -427,7 +434,9 @@
       <a href="#programare">Programare</a>
       <a href="#contact">Contact</a>
       <a href="https://www.facebook.com/profile.php?id=100066977081196" target="_blank" rel="noopener">Facebook</a>
+      <a href="/confidentialitate/">Confidențialitate</a>
     </div>
+    <p class="footer-legal"><span>SUN CRIS VET SRL · CUI 25044169</span><span>Drumul Ghindari 65, București</span><a href="mailto:contact.suncrisvet@gmail.com">contact.suncrisvet@gmail.com</a></p>
     <p class="copyright">© <span data-current-year>2026</span> Sun Cris Vet · veterinar-nonstop.ro</p>
   </footer>
 
@@ -436,7 +445,7 @@
     <a href="https://share.google/EP4vjdRfWP15gJ4Hk" target="_blank" rel="noopener"><svg class="icon icon-map" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Hartă</a>
   </nav>
 
-  <script src="/assets/site.js?v=6"></script>
+  <script src="/assets/site.js?v=7"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
