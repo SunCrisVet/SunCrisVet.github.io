@@ -295,6 +295,11 @@
           <p class="eyebrow">Recenzii Google</p>
           <h2 id="reviews-title">Ce spun oamenii care ne-au încredințat animalele lor.</h2>
         </div>
+        <a class="review-summary" href="https://share.google/OVuIg9697jKwPT58y" target="_blank" rel="noopener" aria-label="Vezi profilul Sun Cris Vet pe Google, evaluat cu 5 din 5 din 17 recenzii">
+          <span class="review-summary-score">5,0 <span aria-hidden="true">★</span></span>
+          <span>17 recenzii Google</span>
+          <small>Verificat la 23 septembrie 2026</small>
+        </a>
       </div>
       <div class="review-grid">
         <figure>
@@ -304,7 +309,7 @@
         </figure>
         <figure>
           <div class="stars" aria-label="5 stele">★★★★★</div>
-          <blockquote>„Recomand cu căldură. Doamna doctor este un om deosebit, apropiat și săritor [...] cu care poți discuta deschis, care îți răspunde oricând ai nevoie.”</blockquote>
+          <blockquote>„Recomand cu căldură. Doamna doctor este un om deosebit, apropiat și săritor.”</blockquote>
           <figcaption>euelena carmen · recenzie Google</figcaption>
         </figure>
         <figure>
@@ -316,6 +321,68 @@
       <div class="reviews-action">
         <a class="button button-secondary" href="https://share.google/OVuIg9697jKwPT58y" target="_blank" rel="noopener">Vezi profilul Sun Cris Vet pe Google <span aria-hidden="true">↗</span></a>
       </div>
+    </section>
+
+    <section class="section callback" id="programare" aria-labelledby="callback-title">
+      <div class="callback-copy">
+        <p class="eyebrow">Cerere de programare</p>
+        <h2 id="callback-title">Nu poți suna acum?</h2>
+        <p>Trimite o cerere scurtă și te contactăm telefonic în timpul programului. Nu solicităm aici diagnostice, fotografii sau alte informații medicale.</p>
+        <div class="callback-notice">
+          <strong>Pentru situații urgente</strong>
+          <span>Sună direct la <a href="tel:+40723603355">0723 603 355</a>. Formularul nu este monitorizat permanent.</span>
+        </div>
+      </div>
+
+      <form class="callback-form" id="callback-form" action="/api/programare" method="post">
+        <div class="form-grid">
+          <label class="form-field">
+            <span>Nume <small>(obligatoriu)</small></span>
+            <input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required>
+          </label>
+          <label class="form-field">
+            <span>Telefon <small>(obligatoriu)</small></span>
+            <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="24" placeholder="07xx xxx xxx" required>
+          </label>
+          <label class="form-field">
+            <span>Animal</span>
+            <select name="animal" required>
+              <option value="">Alege o variantă</option>
+              <option value="caine">Câine</option>
+              <option value="pisica">Pisică</option>
+              <option value="altul">Altul</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Când preferi să fii sunat?</span>
+            <select name="preferred" required>
+              <option value="">Alege un interval</option>
+              <option value="dimineata">Luni–Vineri, 09:00–12:00</option>
+              <option value="dupa-amiaza">Luni–Vineri, 12:00–18:00</option>
+              <option value="sambata">Sâmbătă, 09:00–13:00</option>
+              <option value="oricand">Oricând în timpul programului</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="form-honeypot" aria-hidden="true">
+          <span>Nu completa acest câmp</span>
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </label>
+
+        <label class="privacy-check">
+          <input type="checkbox" name="privacy" value="accepted" required>
+          <span>Am citit <a href="/confidentialitate/" target="_blank" rel="noopener">informarea privind cererea de programare</a>.</span>
+        </label>
+
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFA7lr5JAVQtm6Za" data-action="appointment_request" data-theme="light"></div>
+
+        <div class="form-submit-row">
+          <button class="button button-primary" type="submit">Solicită un apel</button>
+          <p>Trimiterea formularului nu confirmă programarea.</p>
+        </div>
+        <p class="form-status" id="callback-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </form>
     </section>
 
     <section class="section contact" id="contact" aria-labelledby="contact-title">
@@ -355,6 +422,7 @@
     <div class="footer-links">
       <a href="#servicii">Servicii</a>
       <a href="medic/">Medicul</a>
+      <a href="#programare">Programare</a>
       <a href="#contact">Contact</a>
       <a href="https://www.facebook.com/profile.php?id=100066977081196" target="_blank" rel="noopener">Facebook</a>
     </div>
@@ -367,5 +435,6 @@
   </nav>
 
   <script src="assets/site.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
