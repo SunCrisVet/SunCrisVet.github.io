@@ -2,57 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://veterinar-nonstop.ro/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/medic/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/medicina-interna/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/afectiuni-renale-urinare/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/consultatii-tratamente/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/vaccinari-deparazitari/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/analize-laborator/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/chirurgie-stomatologie/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/dermatologie/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/obstetrica-ginecologie/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://veterinar-nonstop.ro/servicii/ecografie/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-23</lastmod>
   </url>
 </urlset>

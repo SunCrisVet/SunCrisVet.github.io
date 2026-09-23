@@ -776,11 +776,13 @@ h1 {
 .about {
   display: grid;
   grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+  grid-template-areas: "doctor copy";
   gap: clamp(3rem, 8vw, 8rem);
   align-items: center;
 }
 
 .doctor-card {
+  grid-area: doctor;
   position: relative;
   display: grid;
   min-height: 490px;
@@ -871,6 +873,10 @@ h1 {
   margin: 1.6rem 0 2.4rem;
   color: var(--muted);
   font-size: 1.08rem;
+}
+
+.about-copy {
+  grid-area: copy;
 }
 
 .about-points {
@@ -1522,6 +1528,12 @@ h1 {
   .service-hero,
   .care-path {
     grid-template-columns: 1fr;
+  }
+
+  .about {
+    grid-template-areas:
+      "copy"
+      "doctor";
   }
 
   .about-mark {
