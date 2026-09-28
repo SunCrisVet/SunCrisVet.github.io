@@ -106,6 +106,100 @@ if (navToggle && mainNav) {
   });
 }
 
+const lightboxItems = [...document.querySelectorAll("[data-lightbox-item]")];
+const photoLightbox = document.querySelector("[data-photo-lightbox]");
+
+if (lightboxItems.length && photoLightbox) {
+  const lightboxImage = photoLightbox.querySelector("[data-lightbox-image]");
+  const lightboxCaption = photoLightbox.querySelector("[data-lightbox-caption]");
+  const closeButton = photoLightbox.querySelector("[data-lightbox-close]");
+  const previousButton = photoLightbox.querySelector("[data-lightbox-prev]");
+  const nextButton = photoLightbox.querySelector("[data-lightbox-next]");
+  const lightboxControls = [closeButton, previousButton, nextButton].filter(Boolean);
+  let currentPhotoIndex = 0;
+  let lastFocusedElement = null;
+
+  const photoData = lightboxItems.map((item) => {
+    const image = item.querySelector("img");
+    const caption = item.closest("figure")?.querySelector("figcaption");
+    return {
+      src: item.getAttribute("href"),
+      alt: image?.alt || "Fotografie din cabinetul Sun Cris Vet",
+      caption: caption?.innerText.replace(/\s+/g, " ").trim() || image?.alt || "",
+    };
+  });
+
+  const showPhoto = (index) => {
+    currentPhotoIndex = (index + photoData.length) % photoData.length;
+    const photo = photoData[currentPhotoIndex];
+    lightboxImage.src = photo.src;
+    lightboxImage.alt = photo.alt;
+    lightboxCaption.textContent = `${currentPhotoIndex + 1} din ${photoData.length} · ${photo.caption}`;
+  };
+
+  const openLightbox = (index, trigger) => {
+    lastFocusedElement = trigger;
+    showPhoto(index);
+    photoLightbox.hidden = false;
+    document.body.classList.add("lightbox-open");
+    closeButton?.focus();
+  };
+
+  const closeLightbox = () => {
+    photoLightbox.hidden = true;
+    document.body.classList.remove("lightbox-open");
+    lightboxImage.removeAttribute("src");
+    lastFocusedElement?.focus();
+  };
+
+  lightboxItems.forEach((item, index) => {
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+      openLightbox(index, item);
+    });
+  });
+
+  closeButton?.addEventListener("click", closeLightbox);
+  previousButton?.addEventListener("click", () => showPhoto(currentPhotoIndex - 1));
+  nextButton?.addEventListener("click", () => showPhoto(currentPhotoIndex + 1));
+
+  photoLightbox.addEventListener("click", (event) => {
+    if (event.target === photoLightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (photoLightbox.hidden) return;
+
+    if (event.key === "Escape") {
+      closeLightbox();
+      return;
+    }
+
+    if (event.key === "ArrowLeft") {
+      showPhoto(currentPhotoIndex - 1);
+      return;
+    }
+
+    if (event.key === "ArrowRight") {
+      showPhoto(currentPhotoIndex + 1);
+      return;
+    }
+
+    if (event.key === "Tab" && lightboxControls.length) {
+      const firstControl = lightboxControls[0];
+      const lastControl = lightboxControls[lightboxControls.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstControl) {
+        event.preventDefault();
+        lastControl.focus();
+      } else if (!event.shiftKey && document.activeElement === lastControl) {
+        event.preventDefault();
+        firstControl.focus();
+      }
+    }
+  });
+}
+
 const mapContainer = document.querySelector("[data-map-container]");
 const mapButton = document.querySelector("[data-load-map]");
 const mapConsent = document.querySelector("[data-map-consent]");
