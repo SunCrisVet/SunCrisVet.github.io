@@ -2,6 +2,144 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
 
+const ANALYTICS_MEASUREMENT_ID = "G-TVPVJ9WL2C";
+const ANALYTICS_CONSENT_KEY = "suncrisvet_analytics_consent";
+const ANALYTICS_HOSTS = new Set(["veterinar-nonstop.ro", "www.veterinar-nonstop.ro"]);
+let analyticsConsentState = null;
+let analyticsLoaded = false;
+
+const readAnalyticsConsent = () => {
+  if (analyticsConsentState) return analyticsConsentState;
+  try {
+    analyticsConsentState = window.localStorage.getItem(ANALYTICS_CONSENT_KEY);
+  } catch {
+    analyticsConsentState = null;
+  }
+  return analyticsConsentState;
+};
+
+const saveAnalyticsConsent = (value) => {
+  analyticsConsentState = value;
+  try {
+    window.localStorage.setItem(ANALYTICS_CONSENT_KEY, value);
+  } catch {
+    // Preferința rămâne valabilă pentru pagina curentă dacă stocarea este blocată.
+  }
+};
+
+const analyticsIsAllowed = () => readAnalyticsConsent() === "accepted";
+
+const loadAnalytics = () => {
+  if (analyticsLoaded || !ANALYTICS_HOSTS.has(window.location.hostname) || !analyticsIsAllowed()) {
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  window.gtag("js", new Date());
+  window.gtag("config", ANALYTICS_MEASUREMENT_ID, {
+    anonymize_ip: true,
+    send_page_view: true,
+  });
+
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_MEASUREMENT_ID}`;
+  document.head.appendChild(analyticsScript);
+  analyticsLoaded = true;
+};
+
+const clearAnalyticsCookies = () => {
+  document.cookie.split(";").forEach((cookie) => {
+    const cookieName = cookie.split("=")[0].trim();
+    if (!cookieName.startsWith("_ga")) return;
+
+    document.cookie = `${cookieName}=; Max-Age=0; Path=/; SameSite=Lax`;
+    document.cookie = `${cookieName}=; Max-Age=0; Path=/; Domain=.veterinar-nonstop.ro; SameSite=Lax`;
+  });
+};
+
+const setAnalyticsConsent = (value) => {
+  saveAnalyticsConsent(value);
+
+  if (value === "accepted") {
+    loadAnalytics();
+    window.gtag?.("consent", "update", { analytics_storage: "granted" });
+    return;
+  }
+
+  window.gtag?.("consent", "update", { analytics_storage: "denied" });
+  clearAnalyticsCookies();
+};
+
+const initializeAnalyticsConsent = () => {
+  if (!ANALYTICS_HOSTS.has(window.location.hostname)) return;
+
+  const banner = document.createElement("section");
+  banner.className = "analytics-consent";
+  banner.setAttribute("role", "dialog");
+  banner.setAttribute("aria-modal", "false");
+  banner.setAttribute("aria-labelledby", "analytics-consent-title");
+  banner.innerHTML = `
+    <div>
+      <h2 id="analytics-consent-title">Statistici pentru îmbunătățirea site-ului</h2>
+      <p>Folosim Google Analytics numai dacă accepți. Ne ajută să vedem ce pagini sunt utile, fără a primi datele introduse în formular. <a href="/confidentialitate/">Detalii în politica de confidențialitate</a>.</p>
+    </div>
+    <div class="analytics-consent-actions">
+      <button class="button button-secondary" type="button" data-analytics-reject>Doar necesare</button>
+      <button class="button button-primary" type="button" data-analytics-accept>Acceptă măsurarea</button>
+    </div>`;
+  document.body.appendChild(banner);
+
+  const showBanner = () => {
+    banner.hidden = false;
+    banner.querySelector("[data-analytics-accept]")?.focus();
+  };
+  const hideBanner = () => {
+    banner.hidden = true;
+  };
+
+  banner.querySelector("[data-analytics-accept]")?.addEventListener("click", () => {
+    setAnalyticsConsent("accepted");
+    hideBanner();
+  });
+  banner.querySelector("[data-analytics-reject]")?.addEventListener("click", () => {
+    setAnalyticsConsent("rejected");
+    hideBanner();
+  });
+
+  const footerLinks = document.querySelector(".footer-links");
+  if (footerLinks) {
+    const settingsButton = document.createElement("button");
+    settingsButton.className = "footer-consent-button";
+    settingsButton.type = "button";
+    settingsButton.textContent = "Setări statistici";
+    settingsButton.addEventListener("click", showBanner);
+    footerLinks.appendChild(settingsButton);
+  }
+
+  const consent = readAnalyticsConsent();
+  if (consent === "accepted") {
+    loadAnalytics();
+    hideBanner();
+  } else if (consent === "rejected") {
+    hideBanner();
+  } else {
+    showBanner();
+  }
+};
+
+initializeAnalyticsConsent();
+
 const analyticsEvents = window.sunCrisVetAnalyticsEvents || [];
 window.sunCrisVetAnalyticsEvents = analyticsEvents;
 
@@ -14,11 +152,10 @@ const trackConversion = (eventName, parameters = {}) => {
 
   analyticsEvents.push(payload);
 
+  if (!analyticsIsAllowed()) return;
+
   if (typeof window.gtag === "function") {
     window.gtag("event", eventName, parameters);
-  } else {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(payload);
   }
 };
 
