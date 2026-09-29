@@ -2602,16 +2602,32 @@ body.lightbox-open {
   .analytics-consent {
     bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
     grid-template-columns: 1fr;
-    padding: 1rem;
+    gap: 0.7rem;
+    padding: 0.8rem 0.85rem;
+    border-radius: 16px;
+  }
+
+  .analytics-consent h2 {
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+  }
+
+  .analytics-consent p {
+    font-size: 0.875rem;
+    line-height: 1.4;
   }
 
   .analytics-consent-actions {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
   }
 
   .analytics-consent-actions .button {
     width: 100%;
+    min-height: 44px;
+    padding: 0.55rem 0.45rem;
+    font-size: 0.82rem;
   }
 
   .mobile-actions {
