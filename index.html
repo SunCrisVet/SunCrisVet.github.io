@@ -26,7 +26,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/assets/site.css?v=10">
+  <link rel="stylesheet" href="/assets/site.css?v=11">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -401,18 +401,18 @@
             <span>Telefon <small>(obligatoriu)</small></span>
             <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="24" placeholder="07xx xxx xxx" required>
           </label>
-          <label class="form-field">
+          <label class="form-field desktop-form-field">
             <span>Animal</span>
-            <select name="animal" required>
+            <select name="animal" required data-desktop-form-control>
               <option value="">Alege o variantă</option>
               <option value="caine">Câine</option>
               <option value="pisica">Pisică</option>
               <option value="altul">Altul</option>
             </select>
           </label>
-          <label class="form-field">
+          <label class="form-field desktop-form-field">
             <span>Când preferi să fii sunat?</span>
-            <select name="preferred" required>
+            <select name="preferred" required data-desktop-form-control>
               <option value="">Alege un interval</option>
               <option value="dimineata">Luni–Vineri, 09:00–12:00</option>
               <option value="dupa-amiaza">Luni–Vineri, 12:00–18:00</option>
@@ -420,6 +420,23 @@
               <option value="oricand">Oricând în timpul programului</option>
             </select>
           </label>
+          <fieldset class="mobile-animal-field">
+            <legend>Animal <small>(opțional)</small></legend>
+            <div class="animal-pills">
+              <label>
+                <input type="radio" name="animal" value="caine" data-mobile-form-control disabled>
+                <span>Câine</span>
+              </label>
+              <label>
+                <input type="radio" name="animal" value="pisica" data-mobile-form-control disabled>
+                <span>Pisică</span>
+              </label>
+              <label>
+                <input type="radio" name="animal" value="altul" data-mobile-form-control disabled>
+                <span>Altul</span>
+              </label>
+            </div>
+          </fieldset>
         </div>
 
         <label class="form-honeypot" aria-hidden="true">
@@ -517,7 +534,7 @@
     <a href="https://share.google/EP4vjdRfWP15gJ4Hk" target="_blank" rel="noopener"><svg class="icon icon-map" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Hartă</a>
   </nav>
 
-  <script src="/assets/site.js?v=9"></script>
+  <script src="/assets/site.js?v=10"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>

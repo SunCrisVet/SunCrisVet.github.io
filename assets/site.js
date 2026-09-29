@@ -358,6 +358,25 @@ const callbackForm = document.querySelector("#callback-form");
 const callbackStatus = document.querySelector("#callback-status");
 
 if (callbackForm && callbackStatus) {
+  const mobileFormMedia = window.matchMedia("(max-width: 640px)");
+  const desktopOnlyControls = callbackForm.querySelectorAll("[data-desktop-form-control]");
+  const mobileOnlyControls = callbackForm.querySelectorAll("[data-mobile-form-control]");
+
+  const syncResponsiveFormControls = () => {
+    const isMobile = mobileFormMedia.matches;
+
+    desktopOnlyControls.forEach((control) => {
+      control.disabled = isMobile;
+      control.required = !isMobile;
+    });
+    mobileOnlyControls.forEach((control) => {
+      control.disabled = !isMobile;
+    });
+  };
+
+  syncResponsiveFormControls();
+  mobileFormMedia.addEventListener("change", syncResponsiveFormControls);
+
   callbackForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 

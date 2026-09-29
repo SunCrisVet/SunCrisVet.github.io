@@ -110,7 +110,7 @@ export async function onRequestPost(context) {
   if (name.length < 2 || phoneDigits.length < 9 || phoneDigits.length > 15) {
     return json("Verifică numele și numărul de telefon.", 400);
   }
-  if (!ANIMAL_LABELS[animal] || !INTERVAL_LABELS[preferred] || !privacyAccepted) {
+  if ((animal && !ANIMAL_LABELS[animal]) || (preferred && !INTERVAL_LABELS[preferred]) || !privacyAccepted) {
     return json("Completează toate câmpurile obligatorii.", 400);
   }
   if (!turnstileToken) {
@@ -142,8 +142,8 @@ export async function onRequestPost(context) {
         recipient: env.FORM_RECIPIENT,
         name,
         phone,
-        animal: ANIMAL_LABELS[animal],
-        preferred: INTERVAL_LABELS[preferred],
+        animal: ANIMAL_LABELS[animal] || "Nespecificat",
+        preferred: INTERVAL_LABELS[preferred] || "Nespecificat — revenim în timpul programului",
         submittedAt,
       }),
     });

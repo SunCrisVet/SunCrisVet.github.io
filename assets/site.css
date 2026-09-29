@@ -1732,6 +1732,74 @@ body.lightbox-open {
   font-weight: 600;
 }
 
+.mobile-animal-field {
+  display: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mobile-animal-field legend {
+  margin-bottom: 0.55rem;
+  padding: 0;
+  color: var(--navy-900);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.mobile-animal-field small {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.animal-pills {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.animal-pills label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.animal-pills input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.animal-pills span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.7rem 0.6rem;
+  color: var(--navy-900);
+  background: var(--sky-50);
+  border: 1px solid #cadce4;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.animal-pills input:checked + span {
+  color: var(--white);
+  background: var(--teal-600);
+  border-color: var(--teal-600);
+}
+
+.animal-pills input:focus-visible + span {
+  outline: 3px solid rgba(18, 169, 150, 0.25);
+  outline-offset: 2px;
+}
+
 .form-field input,
 .form-field select {
   width: 100%;
@@ -2483,6 +2551,14 @@ body.lightbox-open {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .desktop-form-field {
+    display: none;
+  }
+
+  .mobile-animal-field {
+    display: grid;
   }
 
   .form-submit-row {
