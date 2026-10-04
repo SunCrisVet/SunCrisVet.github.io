@@ -1617,6 +1617,26 @@ body.lightbox-open {
   font-size: 0.72rem;
 }
 
+.review-summary-source,
+.review-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.review-google-logo {
+  flex: none;
+  object-fit: contain;
+}
+
+.review-summary > .review-summary-link {
+  margin-top: 0.65rem;
+  color: #087b70;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .review-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1649,6 +1669,10 @@ body.lightbox-open {
 }
 
 .review-grid figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.4rem;
   margin-top: 2rem;
   color: var(--muted);
   font-size: 0.83rem;
