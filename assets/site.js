@@ -4,7 +4,7 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
 
 const ANALYTICS_MEASUREMENT_ID = "G-TVPVJ9WL2C";
 const ANALYTICS_CONSENT_KEY = "suncrisvet_analytics_consent";
-const ANALYTICS_HOSTS = new Set(["veterinar-nonstop.ro", "www.veterinar-nonstop.ro"]);
+const ANALYTICS_HOSTS = new Set(["suncrisvet.ro", "www.suncrisvet.ro", "veterinar-nonstop.ro", "www.veterinar-nonstop.ro"]);
 let analyticsConsentState = null;
 let analyticsLoaded = false;
 
@@ -64,7 +64,7 @@ const clearAnalyticsCookies = () => {
     if (!cookieName.startsWith("_ga")) return;
 
     document.cookie = `${cookieName}=; Max-Age=0; Path=/; SameSite=Lax`;
-    document.cookie = `${cookieName}=; Max-Age=0; Path=/; Domain=.veterinar-nonstop.ro; SameSite=Lax`;
+    document.cookie = `${cookieName}=; Max-Age=0; Path=/; Domain=.${window.location.hostname.replace(/^www\./, "")}; SameSite=Lax`;
   });
 };
 

@@ -5,6 +5,8 @@ const JSON_HEADERS = {
 };
 
 const ALLOWED_HOSTS = new Set([
+  "suncrisvet.ro",
+  "www.suncrisvet.ro",
   "sun-cris-vet.pages.dev",
   "veterinar-nonstop.ro",
   "www.veterinar-nonstop.ro",
