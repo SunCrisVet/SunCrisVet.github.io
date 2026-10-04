@@ -26,7 +26,7 @@
   <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=3">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/assets/site.css?v=13">
+  <link rel="stylesheet" href="/assets/site.css?v=14">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -359,7 +359,8 @@
           <span class="review-summary-link">Vezi recenziile pe Google <span aria-hidden="true">↗</span></span>
         </a>
       </div>
-      <div class="review-grid">
+      <div class="review-carousel" data-review-carousel>
+      <div class="review-grid" id="review-grid">
         <figure>
           <div class="stars" aria-label="5 stele">★★★★★</div>
           <blockquote>„Doamna doctor, un om excepțional! L-a tratat pe Țiți, cățelușul nostru de 7 anișori.”</blockquote>
@@ -375,6 +376,43 @@
           <blockquote>„Recomand din suflet! Face tot posibilul să rezolve, să trateze, să comande medicamente și să analizeze.”</blockquote>
           <figcaption><span>Larisa Zaican ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
         </figure>
+        <figure>
+          <div class="stars" aria-label="5 stele">★★★★★</div>
+          <blockquote>„O experiență foarte frumoasă de fiecare dată când mergem la doamna doctor. […]”</blockquote>
+          <figcaption><span>Maria Alexandra Cazan ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
+        </figure>
+        <figure>
+          <div class="stars" aria-label="5 stele">★★★★★</div>
+          <blockquote>„Tratament veterinar de excepție! Doamna doctor este empatica, calma și cu multa experienta! […]”</blockquote>
+          <figcaption><span>Stefan Mitrea ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
+        </figure>
+        <figure>
+          <div class="stars" aria-label="5 stele">★★★★★</div>
+          <blockquote>„Doamna Doctor este un medic foarte priceput, implicat si dragut cu micii pacienți. […]”</blockquote>
+          <figcaption><span>Roxana Dana ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
+        </figure>
+        <figure>
+          <div class="stars" aria-label="5 stele">★★★★★</div>
+          <blockquote>„Doamna doctor e minunată! 🐶🐱 Îmi tratează cățelul și pisica cu aceeași grijă și atenție ca pe niște copii. […]”</blockquote>
+          <figcaption><span>afrodita mihailescu ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
+        </figure>
+        <figure>
+          <div class="stars" aria-label="5 stele">★★★★★</div>
+          <blockquote>„Recomand cu caldura. Doamna doctor este un om deosebit, apropiat si saritor. […]”</blockquote>
+          <figcaption><span>euelena carmen ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
+        </figure>
+        <figure>
+          <div class="stars" aria-label="5 stele">★★★★★</div>
+          <blockquote>„Dna. Dr. Cristina Sandu, un inger! A fost si este inca - insotitoarea noastra in recuperarea pisicutei noastre, […]”</blockquote>
+          <figcaption><span>Guta Adriana ·</span><span class="review-source"><img class="review-google-logo" src="/assets/google-g-review-v1.png" width="16" height="16" alt="" aria-hidden="true"><span>recenzie Google</span></span></figcaption>
+        </figure>
+      </div>
+      <div class="review-controls" data-review-controls hidden>
+        <button class="review-nav review-nav-prev" type="button" data-review-prev aria-label="Recenziile anterioare" aria-controls="review-grid"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg></button>
+        <span class="review-page-status" data-review-status role="status" aria-live="polite" aria-atomic="true"></span>
+        <button class="review-nav review-nav-next" type="button" data-review-next aria-label="Recenziile următoare" aria-controls="review-grid"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg></button>
+      </div>
+      <p class="review-excerpts-note">Fragmente din recenzii Google. Textele complete sunt disponibile în profilul cabinetului.</p>
       </div>
       <div class="reviews-action">
         <a class="button button-secondary" href="https://share.google/EP4vjdRfWP15gJ4Hk" target="_blank" rel="noopener">Vezi profilul Sun Cris Vet pe Google <span aria-hidden="true">↗</span></a>
@@ -535,7 +573,7 @@
     <a href="https://share.google/EP4vjdRfWP15gJ4Hk" target="_blank" rel="noopener"><svg class="icon icon-map" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Hartă</a>
   </nav>
 
-  <script src="/assets/site.js?v=11"></script>
+  <script src="/assets/site.js?v=12"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>

@@ -1637,6 +1637,69 @@ body.lightbox-open {
   text-underline-offset: 0.18em;
 }
 
+.review-carousel {
+  position: relative;
+}
+
+.review-carousel.is-enhanced .review-grid figure {
+  min-height: 300px;
+}
+
+.review-carousel.is-enhanced .review-grid {
+  touch-action: pan-y pinch-zoom;
+}
+
+.review-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.review-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--navy-900);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(5, 38, 59, 0.1);
+  cursor: pointer;
+}
+
+.review-nav:hover {
+  color: #087b70;
+  border-color: #087b70;
+}
+
+.review-page-status {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.review-excerpts-note {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@media (min-width: 981px) {
+  .review-nav {
+    position: absolute;
+    top: 150px;
+    transform: translateY(-50%);
+  }
+  .review-nav-prev { left: -22px; }
+  .review-nav-next { right: -22px; }
+}
+
 .review-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

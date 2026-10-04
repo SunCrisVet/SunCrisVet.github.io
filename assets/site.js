@@ -140,6 +140,79 @@ const initializeAnalyticsConsent = () => {
 
 initializeAnalyticsConsent();
 
+// Manual review carousel: three cards on desktop, one on smaller screens.
+document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
+  const grid = carousel.querySelector(".review-grid");
+  const cards = Array.from(grid.querySelectorAll("figure"));
+  const controls = carousel.querySelector("[data-review-controls]");
+  const previous = carousel.querySelector("[data-review-prev]");
+  const next = carousel.querySelector("[data-review-next]");
+  const status = carousel.querySelector("[data-review-status]");
+  if (cards.length < 2 || !controls || !previous || !next || !status) return;
+
+  const mobile = window.matchMedia("(max-width: 980px)");
+  let pageSize = mobile.matches ? 1 : 3;
+  let page = 0;
+  let touchStart = null;
+  carousel.classList.add("is-enhanced");
+  carousel.setAttribute("role", "region");
+  carousel.setAttribute("aria-roledescription", "carusel");
+  carousel.setAttribute("aria-label", "Recenzii Google, navigare manuală");
+  carousel.tabIndex = 0;
+
+  const render = () => {
+    const pageCount = Math.ceil(cards.length / pageSize);
+    const first = page * pageSize;
+    const last = Math.min(first + pageSize, cards.length);
+    cards.forEach((card, index) => {
+      card.hidden = index < first || index >= last;
+    });
+    controls.hidden = pageCount < 2;
+    status.textContent = pageSize === 1
+      ? `Recenzia ${first + 1} din ${cards.length}`
+      : `Recenziile ${first + 1}–${last} din ${cards.length}`;
+  };
+  const move = (direction) => {
+    const pageCount = Math.ceil(cards.length / pageSize);
+    page = (page + direction + pageCount) % pageCount;
+    render();
+  };
+
+  previous.addEventListener("click", () => move(-1));
+  next.addEventListener("click", () => move(1));
+  carousel.addEventListener("keydown", (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    move(event.key === "ArrowRight" ? 1 : -1);
+  });
+  grid.addEventListener("touchstart", (event) => {
+    touchStart = event.touches.length === 1
+      ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+      : null;
+  }, { passive: true });
+  grid.addEventListener("touchend", (event) => {
+    if (!touchStart || event.touches.length || !event.changedTouches.length) {
+      touchStart = null;
+      return;
+    }
+    const dx = event.changedTouches[0].clientX - touchStart.x;
+    const dy = event.changedTouches[0].clientY - touchStart.y;
+    touchStart = null;
+    if (mobile.matches && Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      move(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+  grid.addEventListener("touchcancel", () => { touchStart = null; });
+  mobile.addEventListener("change", () => {
+    const firstVisible = page * pageSize;
+    pageSize = mobile.matches ? 1 : 3;
+    page = Math.floor(firstVisible / pageSize);
+    render();
+  });
+  render();
+});
+
 const analyticsEvents = window.sunCrisVetAnalyticsEvents || [];
 window.sunCrisVetAnalyticsEvents = analyticsEvents;
 
