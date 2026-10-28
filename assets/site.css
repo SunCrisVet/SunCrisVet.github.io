@@ -489,7 +489,11 @@ h1 {
   transform: rotate(-2.5deg);
 }
 
-.hero-visual > img {
+.hero-visual > picture {
+  display: block;
+}
+
+.hero-visual img {
   width: 100%;
   aspect-ratio: 4 / 4.5;
   object-fit: cover;
@@ -2343,7 +2347,7 @@ html:not([data-analytics-consent="pending"]) .analytics-consent {
     max-width: 720px;
   }
 
-  .hero-visual > img {
+  .hero-visual img {
     aspect-ratio: 16 / 10;
   }
 
@@ -2569,7 +2573,7 @@ html:not([data-analytics-consent="pending"]) .analytics-consent {
     inset: -12px 18px 24px -10px;
   }
 
-  .hero-visual > img {
+  .hero-visual img {
     aspect-ratio: 4 / 3;
     object-position: 62% center;
     border-radius: 26px;

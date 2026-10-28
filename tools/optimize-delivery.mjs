@@ -37,9 +37,9 @@ function walk(dir) {
     // waiting for unrelated deferred scripts inserted by the CDN.
     html = html.replace(/<script src="\/assets\/site\.js\?v=\d+"(?: defer| async)?><\/script>/g,
       '<script src="/assets/site.js?v=15" async></script>');
-    html = html.replace(/<!-- analytics-consent:start -->[\s\S]*?<!-- analytics-consent:end -->\s*/g,'');
+    html = html.replace(/^[ \t]*<!-- analytics-consent:start -->[\s\S]*?<!-- analytics-consent:end -->[ \t]*\r?\n?/gm,'');
     if (html.includes('<script src="/assets/site.js')) {
-      html = html.replace(/(?=  <script src="\/assets\/site\.js)/, `${bannerMarkup}\n  `);
+      html = html.replace(/^[ \t]*(<script src="\/assets\/site\.js[^>]*><\/script>)/m, `${bannerMarkup}\n  $1`);
     }
     html = html.replace(/\s*<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js" async defer><\/script>/g, '');
     html = html.replace(/(<img\b[^>]*?)fetchpriority="high"/g, '$1fetchpriority="auto"');
@@ -62,6 +62,12 @@ function walk(dir) {
         : '(max-width: 640px) calc(100vw - 32px), (max-width: 1100px) calc(50vw - 32px), 294px';
       const srcset = `/assets/${name}-480-v2.webp 480w, /assets/${name}-800-v2.webp 800w, /assets/${name}${hero ? '-1280-v2' : ''}.webp ${hero ? 1280 : name === 'intrare-cabinet-veterinar-sector-5' || name === 'pisoi-ingrijit-sun-cris-vet' ? 1200 : 1400}w`;
       return tag.replace(match[0], `src="/assets/${name}-${hero ? 800 : 480}-v2.webp" srcset="${srcset}" sizes="${sizes}"`);
+    });
+    // AVIF for modern browsers; retain the unchanged responsive WebP fallback.
+    html = html.replace(/(<div class="hero-visual">\s*)(<img\b[^>]+>)/, (all,prefix,img) => {
+      const sizes=img.match(/sizes="([^"]+)"/)[1];
+      const source='<source type="image/avif" srcset="/assets/clinic-pets-hero-480-v3.avif 480w, /assets/clinic-pets-hero-800-v3.avif 800w, /assets/clinic-pets-hero-1280-v3.avif 1280w" sizes="'+sizes+'">';
+      return `${prefix}<picture>${source}${img}</picture>`;
     });
     fs.writeFileSync(file, html);
     count++;

@@ -21,6 +21,9 @@ characters used by the site, including Romanian diacritics. Original font
 files and their OFL license are retained. Gallery thumbnails use 480/800 px
 WebP variants; lightbox links retain the full-size originals.
 
+The homepage hero uses responsive AVIF sources (480/800/1280 px) with the
+existing WebP images as a fallback. The original hero asset is retained.
+
 Fonts are preloaded with high priority and use `font-display: optional`: on a
 very slow first visit the browser keeps the readable system fallback instead
 of repainting the text several seconds later. Later visits use the cached
