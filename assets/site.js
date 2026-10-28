@@ -84,7 +84,7 @@ const setAnalyticsConsent = (value) => {
 const initializeAnalyticsConsent = () => {
   if (!ANALYTICS_HOSTS.has(window.location.hostname)) return;
 
-  const banner = document.createElement("section");
+  const banner = document.querySelector(".analytics-consent") || document.createElement("section");
   banner.className = "analytics-consent";
   banner.setAttribute("role", "dialog");
   banner.setAttribute("aria-modal", "false");
@@ -98,15 +98,17 @@ const initializeAnalyticsConsent = () => {
       <button class="button button-secondary" type="button" data-analytics-reject>Doar necesare</button>
       <button class="button button-primary" type="button" data-analytics-accept>Acceptă măsurarea</button>
     </div>`;
-  document.body.appendChild(banner);
+  if (!banner.isConnected) document.body.appendChild(banner);
 
   const showBanner = (focus = false) => {
+    document.documentElement.dataset.analyticsConsent = "pending";
     banner.hidden = false;
     // Do not steal focus (or scroll the document) on the initial visit.
     if (focus) banner.querySelector("[data-analytics-accept]")?.focus({ preventScroll: true });
   };
   const hideBanner = () => {
     banner.hidden = true;
+    document.documentElement.dataset.analyticsConsent = "chosen";
   };
 
   banner.querySelector("[data-analytics-accept]")?.addEventListener("click", () => {

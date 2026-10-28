@@ -2257,7 +2257,8 @@ body.lightbox-open {
   box-shadow: 0 18px 55px rgba(7, 31, 49, 0.26);
 }
 
-.analytics-consent[hidden] {
+.analytics-consent[hidden],
+html:not([data-analytics-consent="pending"]) .analytics-consent {
   display: none;
 }
 

@@ -7,6 +7,11 @@ import { createRequire } from 'node:module';
 const require = createRequire(process.env.PERFORMANCE_TOOLS_PACKAGE || import.meta.url);
 const CleanCSS = require('clean-css');
 const root = path.resolve(import.meta.dirname, '..');
+const consentBootstrap = `(()=>{if(!["suncrisvet.ro","www.suncrisvet.ro","veterinar-nonstop.ro","www.veterinar-nonstop.ro"].includes(location.hostname))return;let c;try{c=localStorage.getItem("suncrisvet_analytics_consent")}catch{}document.documentElement.dataset.analyticsConsent=c==="accepted"||c==="rejected"?"chosen":"pending"})();`;
+const bootstrapHash = crypto.createHash('sha256').update(consentBootstrap).digest('base64');
+const siteScript = fs.readFileSync(path.join(root,'assets/site.js'),'utf8');
+const bannerContent = siteScript.match(/banner\.innerHTML = `([\s\S]*?)`;/)[1];
+const bannerMarkup = `<!-- analytics-consent:start --><section class="analytics-consent" role="dialog" aria-modal="false" aria-labelledby="analytics-consent-title">${bannerContent}</section><!-- analytics-consent:end -->`;
 const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8')
   .replace(/url\("(?!\/|data:|https:)([^"\n]+)"\)/g, 'url("/assets/$1")');
 const result = new CleanCSS({ level: 1, rebase: false }).minify(css);
@@ -16,7 +21,7 @@ const hash = crypto.createHash('sha256').update(styles).digest('base64');
 const preload = ['latin', 'latin-ext'].map(name =>
   `<link rel="preload" href="/assets/fonts/inter-${name}-v2.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">`
 ).join('\n  ');
-const block = `<!-- site-styles:start -->\n  ${preload}\n  <link rel="preload" href="/assets/site.js?v=14" as="script" fetchpriority="high">\n  <style data-site-styles>${styles}</style>\n  <!-- site-styles:end -->`;
+const block = `<!-- site-styles:start -->\n  ${preload}\n  <link rel="preload" href="/assets/site.js?v=15" as="script" fetchpriority="high">\n  <style data-site-styles>${styles}</style>\n  <script data-consent-bootstrap>${consentBootstrap}</script>\n  <!-- site-styles:end -->`;
 const gallery = new Set(['intrare-cabinet-veterinar-sector-5', 'cabinet-consultatii-sun-cris-vet', 'cabinet-veterinar-sector-5-interior', 'pisoi-ingrijit-sun-cris-vet']);
 let count = 0;
 function walk(dir) {
@@ -31,7 +36,11 @@ function walk(dir) {
     // The script is at the end of body, after every node it uses. Async avoids
     // waiting for unrelated deferred scripts inserted by the CDN.
     html = html.replace(/<script src="\/assets\/site\.js\?v=\d+"(?: defer| async)?><\/script>/g,
-      '<script src="/assets/site.js?v=14" async></script>');
+      '<script src="/assets/site.js?v=15" async></script>');
+    html = html.replace(/<!-- analytics-consent:start -->[\s\S]*?<!-- analytics-consent:end -->\s*/g,'');
+    if (html.includes('<script src="/assets/site.js')) {
+      html = html.replace(/(?=  <script src="\/assets\/site\.js)/, `${bannerMarkup}\n  `);
+    }
     html = html.replace(/\s*<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js" async defer><\/script>/g, '');
     html = html.replace(/(<img\b[^>]*?)fetchpriority="high"/g, '$1fetchpriority="auto"');
     html = html.replace(/src="\/assets\/google-g-review-v1.png"/g,
@@ -63,5 +72,8 @@ const headersPath = path.join(root, '_headers');
 let headers = fs.readFileSync(headersPath, 'utf8');
 headers = headers.replace(/style-src 'self'(?: 'sha256-[^']+')*/,
   `style-src 'self' 'sha256-${hash}'`);
+if (!headers.includes(`'sha256-${bootstrapHash}'`)) {
+  headers = headers.replace("script-src 'self'", `script-src 'self' 'sha256-${bootstrapHash}'`);
+}
 fs.writeFileSync(headersPath, headers);
 console.log(JSON.stringify({pages:count, cssBytes:Buffer.byteLength(styles), styleHash:hash}));
