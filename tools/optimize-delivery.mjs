@@ -14,7 +14,7 @@ if (result.errors.length) throw new Error(result.errors.join('\n'));
 const styles = result.styles;
 const hash = crypto.createHash('sha256').update(styles).digest('base64');
 const preload = ['latin', 'latin-ext'].map(name =>
-  `<link rel="preload" href="/assets/fonts/inter-${name}-v2.woff2" as="font" type="font/woff2" crossorigin>`
+  `<link rel="preload" href="/assets/fonts/inter-${name}-v2.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">`
 ).join('\n  ');
 const block = `<!-- site-styles:start -->\n  ${preload}\n  <style data-site-styles>${styles}</style>\n  <!-- site-styles:end -->`;
 const gallery = new Set(['intrare-cabinet-veterinar-sector-5', 'cabinet-consultatii-sun-cris-vet', 'cabinet-veterinar-sector-5-interior', 'pisoi-ingrijit-sun-cris-vet']);
@@ -29,6 +29,7 @@ function walk(dir) {
     if (!/site-styles:start|rel="stylesheet" href="\/assets\/site.css/.test(html)) continue;
     html = html.replace(/<!-- site-styles:start -->[\s\S]*?<!-- site-styles:end -->|<link rel="stylesheet" href="\/assets\/site\.css\?v=\d+">/, block);
     html = html.replace(/\/assets\/site\.js\?v=\d+/g, '/assets/site.js?v=13');
+    html = html.replace(/(<img\b[^>]*?)fetchpriority="high"/g, '$1fetchpriority="auto"');
     html = html.replace(/<div class="header-meta" aria-label=/g, '<div class="header-meta" role="group" aria-label=');
     html = html.replace(/<img class="brand-mark" (?!width=)/g, '<img class="brand-mark" width="250" height="280" ');
     html = html.replace(/<img src="\/assets\/logo-sun-cris-vet\.svg\?v=2" alt="Sun Cris Vet">/g,

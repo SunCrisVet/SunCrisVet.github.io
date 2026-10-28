@@ -20,3 +20,8 @@ Inter v2 is the same variable font, subsetted to Latin and Latin Extended
 characters used by the site, including Romanian diacritics. Original font
 files and their OFL license are retained. Gallery thumbnails use 480/800 px
 WebP variants; lightbox links retain the full-size originals.
+
+Fonts are preloaded with high priority and use `font-display: optional`: on a
+very slow first visit the browser keeps the readable system fallback instead
+of repainting the text several seconds later. Later visits use the cached
+Inter font. No content or controls are hidden to obtain a performance score.
