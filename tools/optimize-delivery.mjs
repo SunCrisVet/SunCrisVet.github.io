@@ -28,7 +28,9 @@ function walk(dir) {
     let html = fs.readFileSync(file, 'utf8');
     if (!/site-styles:start|rel="stylesheet" href="\/assets\/site.css/.test(html)) continue;
     html = html.replace(/<!-- site-styles:start -->[\s\S]*?<!-- site-styles:end -->|<link rel="stylesheet" href="\/assets\/site\.css\?v=\d+">/, block);
-    html = html.replace(/\/assets\/site\.js\?v=\d+/g, '/assets/site.js?v=13');
+    html = html.replace(/<script src="\/assets\/site\.js\?v=\d+"(?: defer)?><\/script>/g,
+      '<script src="/assets/site.js?v=14" defer></script>');
+    html = html.replace(/\s*<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js" async defer><\/script>/g, '');
     html = html.replace(/(<img\b[^>]*?)fetchpriority="high"/g, '$1fetchpriority="auto"');
     html = html.replace(/<div class="header-meta" aria-label=/g, '<div class="header-meta" role="group" aria-label=');
     html = html.replace(/<img class="brand-mark" (?!width=)/g, '<img class="brand-mark" width="250" height="280" ');

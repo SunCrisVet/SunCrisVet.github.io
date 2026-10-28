@@ -432,6 +432,32 @@ const callbackForm = document.querySelector("#callback-form");
 const callbackStatus = document.querySelector("#callback-status");
 
 if (callbackForm && callbackStatus) {
+  // Keep the anti-spam check, but download it when the visitor approaches the
+  // form instead of competing with the first screen. The API still requires a
+  // valid, server-verified token for every request.
+  let protectionRequested = false;
+  const loadFormProtection = () => {
+    if (protectionRequested) return;
+    protectionRequested = true;
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  };
+  if ("IntersectionObserver" in window) {
+    const protectionObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loadFormProtection();
+        protectionObserver.disconnect();
+      }
+    }, { rootMargin: "1200px" });
+    protectionObserver.observe(callbackForm);
+  } else {
+    loadFormProtection();
+  }
+  callbackForm.addEventListener("focusin", loadFormProtection, { once: true });
+
   const mobileFormMedia = window.matchMedia("(max-width: 640px)");
   const desktopOnlyControls = callbackForm.querySelectorAll("[data-desktop-form-control]");
   const mobileOnlyControls = callbackForm.querySelectorAll("[data-mobile-form-control]");
@@ -455,6 +481,13 @@ if (callbackForm && callbackStatus) {
     event.preventDefault();
 
     if (!callbackForm.reportValidity()) {
+      return;
+    }
+
+    loadFormProtection();
+    if (!new FormData(callbackForm).get("cf-turnstile-response")) {
+      callbackStatus.dataset.state = "error";
+      callbackStatus.textContent = "Așteaptă finalizarea verificării de securitate, apoi apasă din nou pe Solicită un apel.";
       return;
     }
 
