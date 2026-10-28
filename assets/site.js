@@ -100,9 +100,10 @@ const initializeAnalyticsConsent = () => {
     </div>`;
   document.body.appendChild(banner);
 
-  const showBanner = () => {
+  const showBanner = (focus = false) => {
     banner.hidden = false;
-    banner.querySelector("[data-analytics-accept]")?.focus();
+    // Do not steal focus (or scroll the document) on the initial visit.
+    if (focus) banner.querySelector("[data-analytics-accept]")?.focus({ preventScroll: true });
   };
   const hideBanner = () => {
     banner.hidden = true;
@@ -123,7 +124,7 @@ const initializeAnalyticsConsent = () => {
     settingsButton.className = "footer-consent-button";
     settingsButton.type = "button";
     settingsButton.textContent = "Setări statistici";
-    settingsButton.addEventListener("click", showBanner);
+    settingsButton.addEventListener("click", () => showBanner(true));
     footerLinks.appendChild(settingsButton);
   }
 
