@@ -16,7 +16,7 @@ const hash = crypto.createHash('sha256').update(styles).digest('base64');
 const preload = ['latin', 'latin-ext'].map(name =>
   `<link rel="preload" href="/assets/fonts/inter-${name}-v2.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">`
 ).join('\n  ');
-const block = `<!-- site-styles:start -->\n  ${preload}\n  <style data-site-styles>${styles}</style>\n  <!-- site-styles:end -->`;
+const block = `<!-- site-styles:start -->\n  ${preload}\n  <link rel="preload" href="/assets/site.js?v=14" as="script" fetchpriority="high">\n  <style data-site-styles>${styles}</style>\n  <!-- site-styles:end -->`;
 const gallery = new Set(['intrare-cabinet-veterinar-sector-5', 'cabinet-consultatii-sun-cris-vet', 'cabinet-veterinar-sector-5-interior', 'pisoi-ingrijit-sun-cris-vet']);
 let count = 0;
 function walk(dir) {
@@ -28,10 +28,14 @@ function walk(dir) {
     let html = fs.readFileSync(file, 'utf8');
     if (!/site-styles:start|rel="stylesheet" href="\/assets\/site.css/.test(html)) continue;
     html = html.replace(/<!-- site-styles:start -->[\s\S]*?<!-- site-styles:end -->|<link rel="stylesheet" href="\/assets\/site\.css\?v=\d+">/, block);
-    html = html.replace(/<script src="\/assets\/site\.js\?v=\d+"(?: defer)?><\/script>/g,
-      '<script src="/assets/site.js?v=14" defer></script>');
+    // The script is at the end of body, after every node it uses. Async avoids
+    // waiting for unrelated deferred scripts inserted by the CDN.
+    html = html.replace(/<script src="\/assets\/site\.js\?v=\d+"(?: defer| async)?><\/script>/g,
+      '<script src="/assets/site.js?v=14" async></script>');
     html = html.replace(/\s*<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js" async defer><\/script>/g, '');
     html = html.replace(/(<img\b[^>]*?)fetchpriority="high"/g, '$1fetchpriority="auto"');
+    html = html.replace(/src="\/assets\/google-g-review-v1.png"/g,
+      'src="/assets/google-g-review-v2.png" loading="lazy" decoding="async"');
     html = html.replace(/<div class="header-meta" aria-label=/g, '<div class="header-meta" role="group" aria-label=');
     html = html.replace(/<img class="brand-mark" (?!width=)/g, '<img class="brand-mark" width="250" height="280" ');
     html = html.replace(/<img src="\/assets\/logo-sun-cris-vet\.svg\?v=2" alt="Sun Cris Vet">/g,
