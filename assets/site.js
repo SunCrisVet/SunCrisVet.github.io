@@ -2,6 +2,41 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
 
+// Also update a page that was left open across the reopening deadline.
+const closureNotice = document.querySelector("#program-temporar");
+if (closureNotice) {
+  const closureEnd = Date.parse("2026-12-03T00:00:00+02:00");
+  const updateClosure = () => {
+    if (!closureNotice.isConnected) return;
+    const remaining = closureEnd - Date.now();
+    if (remaining > 0) {
+      window.setTimeout(updateClosure, Math.min(remaining, 60_000));
+      return;
+    }
+    closureNotice.remove();
+    document.querySelector(".closure-form-note")?.remove();
+    const callbackCopy = document.querySelector(".callback-copy > p:not(.eyebrow)");
+    if (callbackCopy) callbackCopy.textContent = "Trimite o cerere scurtă și te contactăm telefonic în timpul programului. Nu solicităm aici diagnostice, fotografii sau alte informații medicale.";
+    const urgentNote = document.querySelector(".callback-notice");
+    if (urgentNote) urgentNote.innerHTML = '<strong>Pentru situații urgente</strong><span>Sună direct la <a href="tel:+40723603355">0723 603 355</a>. Formularul nu este monitorizat permanent.</span>';
+    const scheduleLabel = document.querySelector(".header-meta .meta-label");
+    if (scheduleLabel) {
+      scheduleLabel.textContent = "Program";
+      if (!document.querySelector(".notice")) {
+        const strip = document.createElement("div");
+        strip.className = "notice";
+        strip.setAttribute("role", "note");
+        strip.innerHTML = '<span>Pentru situații urgente în timpul programului</span><a href="tel:+40723603355">Sună înainte de deplasare: 0723 603 355</a>';
+        document.querySelector(".site-header")?.before(strip);
+      }
+    }
+  };
+  updateClosure();
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) updateClosure();
+  });
+}
+
 const ANALYTICS_MEASUREMENT_ID = "G-TVPVJ9WL2C";
 const ANALYTICS_CONSENT_KEY = "suncrisvet_analytics_consent";
 const ANALYTICS_HOSTS = new Set(["suncrisvet.ro", "www.suncrisvet.ro", "veterinar-nonstop.ro", "www.veterinar-nonstop.ro"]);

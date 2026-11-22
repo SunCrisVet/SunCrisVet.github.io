@@ -1,5 +1,11 @@
 # Performance assets
 
+The 23 November–2 December 2026 closure expires at 3 December 00:00
+Europe/Bucharest. `functions/_middleware.js` removes the announcement and restores
+the normal callback copy from HTML responses using the server clock. `site.js`
+also updates tabs left open across midnight. Run `node tools/test-closure-expiry.mjs`
+to check the exact deadline, all 13 pages, cache handling and preserved form/CSP.
+
 `assets/site.css` remains the readable stylesheet source. Published HTML embeds
 its minified version to avoid a blocking CSS round trip. CSP allows only its
 SHA-256 hash, not arbitrary inline styles.

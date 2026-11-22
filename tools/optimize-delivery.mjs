@@ -21,7 +21,7 @@ const hash = crypto.createHash('sha256').update(styles).digest('base64');
 const preload = ['latin', 'latin-ext'].map(name =>
   `<link rel="preload" href="/assets/fonts/inter-${name}-v2.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">`
 ).join('\n  ');
-const block = `<!-- site-styles:start -->\n  ${preload}\n  <link rel="preload" href="/assets/site.js?v=15" as="script" fetchpriority="high">\n  <style data-site-styles>${styles}</style>\n  <script data-consent-bootstrap>${consentBootstrap}</script>\n  <!-- site-styles:end -->`;
+const block = `<!-- site-styles:start -->\n  ${preload}\n  <link rel="preload" href="/assets/site.js?v=16" as="script" fetchpriority="high">\n  <style data-site-styles>${styles}</style>\n  <script data-consent-bootstrap>${consentBootstrap}</script>\n  <!-- site-styles:end -->`;
 const gallery = new Set(['intrare-cabinet-veterinar-sector-5', 'cabinet-consultatii-sun-cris-vet', 'cabinet-veterinar-sector-5-interior', 'pisoi-ingrijit-sun-cris-vet']);
 let count = 0;
 function walk(dir) {
@@ -36,7 +36,7 @@ function walk(dir) {
     // The script is at the end of body, after every node it uses. Async avoids
     // waiting for unrelated deferred scripts inserted by the CDN.
     html = html.replace(/<script src="\/assets\/site\.js\?v=\d+"(?: defer| async)?><\/script>/g,
-      '<script src="/assets/site.js?v=15" async></script>');
+      '<script src="/assets/site.js?v=16" async></script>');
     html = html.replace(/^[ \t]*<!-- analytics-consent:start -->[\s\S]*?<!-- analytics-consent:end -->[ \t]*\r?\n?/gm,'');
     if (html.includes('<script src="/assets/site.js')) {
       html = html.replace(/^[ \t]*(<script src="\/assets\/site\.js[^>]*><\/script>)/m, `${bannerMarkup}\n  $1`);
