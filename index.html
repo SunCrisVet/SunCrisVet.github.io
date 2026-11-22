@@ -101,7 +101,6 @@
 <body>
   <a class="skip-link" href="#continut">Sari la conținut</a>
 
-  <div class="notice" role="note"><span>Pentru situații urgente în timpul programului</span><a href="tel:+40723603355">Sună înainte de deplasare: 0723 603 355</a></div>
 
   <header class="site-header">
     <a class="brand" href="/" aria-label="Sun Cris Vet — pagina principală">
@@ -121,7 +120,7 @@
     </nav>
     <div class="header-meta" role="group" aria-label="Informații cabinet">
       <div>
-        <span class="meta-label">Program</span>
+        <span class="meta-label">Program obișnuit</span>
         <strong>L–V 09:00–18:00 · S 09:00–13:00</strong>
       </div>
       <a class="button button-primary button-small" href="tel:+40723603355" aria-label="Sună la Sun Cris Vet, 0723 603 355">
@@ -129,6 +128,18 @@
       </a>
     </div>
   </header>
+
+  <!-- temporary-closure:start -->
+  <aside class="temporary-notice" id="program-temporar" role="note" aria-labelledby="temporary-notice-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18M8 15h2M14 15h2"/></svg>
+    <div>
+      <h2 id="temporary-notice-title">Program temporar</h2>
+      <p>Cabinetul Sun Cris Vet este închis în perioada <strong><time datetime="2026-11-23">23 noiembrie</time>–<time datetime="2026-12-02">2 decembrie 2026</time>, inclusiv</strong>. Reluăm activitatea <strong>joi, <time datetime="2026-12-03">3 decembrie</time></strong>.</p>
+      <p class="temporary-notice-thanks">Vă mulțumim pentru înțelegere!</p>
+    </div>
+  </aside>
+  <!-- temporary-closure:end -->
+
 
   <main id="continut">
     <section class="hero" aria-labelledby="hero-title">
@@ -471,14 +482,15 @@
       <div class="callback-copy">
         <p class="eyebrow">Cerere de programare</p>
         <h2 id="callback-title">Nu poți suna acum?</h2>
-        <p>Trimite o cerere scurtă și te contactăm telefonic în timpul programului. Nu solicităm aici diagnostice, fotografii sau alte informații medicale.</p>
+        <p>Trimite o cerere scurtă și te contactăm telefonic începând cu 3 decembrie, după reluarea activității. Nu solicităm aici diagnostice, fotografii sau alte informații medicale.</p>
         <div class="callback-notice">
-          <strong>Pentru situații urgente</strong>
-          <span>Sună direct la <a href="tel:+40723603355">0723 603 355</a>. Formularul nu este monitorizat permanent.</span>
+          <strong>Pentru situații urgente în perioada închiderii</strong>
+          <span>Consultațiile și tratamentele nu sunt disponibile în perioada 23 noiembrie–2 decembrie. Pentru urgențe, contactează un centru veterinar deschis.</span>
         </div>
       </div>
 
       <form class="callback-form" id="callback-form" action="/api/programare" method="post">
+        <p class="closure-form-note" role="note">Solicitările trimise în perioada închiderii vor fi preluate începând cu <strong>3 decembrie 2026</strong>.</p>
         <div class="form-grid">
           <label class="form-field">
             <span>Nume <small>(obligatoriu)</small></span>
